@@ -12,9 +12,10 @@ class Projectile:
         self.mass=mass
     def set_radius(self,radius):
         self.radius=radius
-    def move(self,time_step):
+    def step(self,time_step):
         x=self.position[0]
         y=self.position[1]
+        self.velocity=(self.velocity[0],self.velocity[1]+(9.81*time_step))
         self.position=(x+self.velocity[0]*time_step,
             y+self.velocity[1]*time_step)
     def draw(self,surface):

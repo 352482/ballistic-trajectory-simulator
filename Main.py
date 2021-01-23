@@ -10,13 +10,15 @@ width=800
 height=800
 
 framerate=40 #frames/s
-simulation_time_step=1/framerate #s
+simulation_time_step=.01 #s
 
 screen = pygame.display.set_mode((width,height))
 screen.fill((255,255,255))
 pygame.display.set_caption("Ballistic Trajectory Simulator")
 
-projectile = Projectile(1,10,(10,-10),(0,height))
+initial_velocity=(30,100)
+
+projectile = Projectile(1,10,(initial_velocity[0],initial_velocity[1]*-1),(0,height))
 
 atmospheric_density = 1.225 #kg/m^3
 
@@ -25,7 +27,7 @@ async def simulation_loop():
     while True:
         time_delta=datetime.datetime.now()-previous_time
         previous_time=datetime.datetime.now()
-        projectile.move(time_delta.microseconds/1000000)
+        projectile.step(time_delta.microseconds/1000000)
         await asyncio.sleep(simulation_time_step)
 
 async def update_loop():
@@ -33,13 +35,12 @@ async def update_loop():
     trail=[]
     while True:
         pygame.event.pump()
-        #draw projectile and trajectory
         if projectile.position != last_position:
             screen.fill((255,255,255))
             projectile.draw(screen)
             trail.append((screen, (0,0,0), last_position, projectile.position))
             for line in trail:
-                pygame.draw.line(*line)
+                pygame.draw.aaline(*line)
             last_position = projectile.position
         await asyncio.sleep(1/framerate)
 
