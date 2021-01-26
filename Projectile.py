@@ -32,3 +32,5 @@ class Projectile:
             y+self.velocity[1]*time_step*scale_factor)
     def draw(self,surface,scale_factor):
         pygame.draw.circle(surface, (0,0,0), self.position, self.radius*scale_factor)
+        pygame.draw.aaline(surface, (0,255,0), self.position, (self.position[0]+self.velocity[0]+self.radius*scale_factor,self.position[1]))
+        pygame.draw.aaline(surface, (255,0,0), self.position, (self.position[0],self.position[1]+self.radius*scale_factor+self.velocity[1]))
