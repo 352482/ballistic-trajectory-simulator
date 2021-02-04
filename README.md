@@ -1,5 +1,5 @@
-###ballistic-trajectory-simulator
+# ballistic-trajectory-simulator
 
-##Examples
+## Examples
 This is a recording of the program running with default arguments
 ![](example_gifs/default_args.gif)
