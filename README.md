@@ -6,5 +6,5 @@ This is a Python simulator which discretely computes the forces acting on a proj
 This is a recording of the program running with default arguments.\
 ![](example_gifs/default_args.gif)
 
-Here's a recording of the program running with the same arguments except for the drag_coefficient, which has been lowered.
+Here's a recording of the program running with the same arguments except for the drag coefficient, which has been lowered.\
 ![](example_gis/low_drag.gif)
